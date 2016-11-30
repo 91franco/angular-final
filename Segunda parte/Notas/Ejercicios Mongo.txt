@@ -1,0 +1,116 @@
+Abrir la consola, ubicarse en la carpeta de mogodb/server/3.2/bin y ejecutar mongod, con esta abrira el servidor.
+Abrir otra consola, ir hasta la carpeta anterior y abrir mongo.
+Aqui es donde crearemos las bases de datos
+
+Para importar el archivo personas.json tenemos que abrir otra consola desde esta ubicacion y ejecutar:
+mongoimport --db mibase --collection personas --jsonArray file personas.json
+
+mongoimport --db mibase --collection enron --file enron.json
+
+
+Abrir otra consola y correr: npm install mongo
+
+llevar el archivo mongo.js, a la carpeta de arriba, ubicarse en esa carpeta desde cmd y correr: node mongo
+
+
+
+
+
+mongo.js:
+Mostrar todos los documentos:
+var MongoClient = require( 'mongodb' ).MongoClient;
+MongoClient.connect('mongodb://localhost:27017/coleccion', function(err, db) {
+  if (err)
+    console.log(err);
+
+    db.collection('personas')
+    .find()
+    .toArray((err, data) => {
+
+      if (err)
+        console.log(err);
+
+      console.log(data);
+    })
+
+});
+
+
+
+Mostrar la cantidad total de los documentos:
+var MongoClient = require( 'mongodb' ).MongoClient;
+MongoClient.connect('mongodb://localhost:27017/coleccion', function(err, db) {
+  if (err)
+    console.log(err);
+
+    db.collection('personas')
+    .find()
+    .count((err, data) => {
+
+      if (err)
+        console.log(err);
+      console.log(data);
+    })
+});
+
+
+
+Mostrar los correos de las mujeres:
+var MongoClient = require( 'mongodb' ).MongoClient;
+MongoClient.connect('mongodb://localhost:27017/coleccion', function(err, db) {
+  if (err)
+    console.log(err);
+
+    db.collection('personas')
+    .find({gender:"female"},{email:1})
+    .toArray((err, data) => {
+
+      if (err)
+        console.log(err);
+      console.log(data);
+    })
+});
+
+
+
+Obtener todos los datos de los usuarios activos
+var MongoClient = require( 'mongodb' ).MongoClient;
+MongoClient.connect('mongodb://localhost:27017/coleccion', function(err, db) {
+  if (err)
+    console.log(err);
+
+    db.collection('personas')
+    .find({isActive:true},{email:1})
+    .toArray((err, data) => {
+
+      if (err)
+        console.log(err);
+      console.log(data);
+    })
+});
+
+
+
+Obtener el nombre, mail, dirección y amigos de los usuarios activos(isActive: true) de sexo masculino
+var MongoClient = require( 'mongodb' ).MongoClient;
+MongoClient.connect('mongodb://localhost:27017/coleccion', function(err, db) {
+  if (err)
+    console.log(err);
+
+    db.collection('personas')
+    .find({isActive:true, gender:"male"},{_id:0,name:1,email:1,address:1,friends:1})
+    .toArray((err, data) => {
+
+      if (err)
+        console.log(err);
+      console.log(data);
+    })
+});
+
+
+
+Obtener el nombre y el balance de lo usuarios que estén entre $2800 y $3500, ordenado de mayor a menor
+
+
+
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" type="image/png" href="/favicon.png" /> -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <title>Fixed Top Navbar Example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/micss.css" media="screen" title="no title" charset="utf-8">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="navbar-fixed-top.css" rel="stylesheet"> -->
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="lib/angular/angular.min.js">
+    </script>
+    <script type="text/javascript" src="lib/angular-animate/angular-animate.min.js">
+    </script>
+    <script type="text/javascript" src="scripts/app.js">
+    </script>
+    <script type="text/javascript" src="scripts/controllers/main.js"></script>
+    <script type="text/javascript" src="scripts/controllers/calculos.js"></script>
+    <script type="text/javascript" src="scripts/controllers/carga.js"></script>
+    <script type="text/javascript" src="scripts/controllers/listado.js"></script>
+
+    <script type="text/javascript" src="scripts/servicios/datos.js"></script>
+    <script type="text/javascript" src="scripts/servicios/personas.js"></script>
+
+  </head>
+
+  <body ng-app="miApp" ng-controller="MainCtrl">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Primer Parcial</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" ng-click="cambiarVista(1)">Punto 1</a></li>
+            <li><a href="" ng-click="cambiarVista(2);">Punto 2</a></li>
+            <li><a href="#" ng-click="cambiarVista(3)">Punto 3</a></li>
+
+          </ul>
+          <!-- <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+          </ul> -->
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <!-- <div class="jumbotron"> -->
+        <!-- <h1>Navbar example</h1> -->
+        <!-- <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p> -->
+        <!-- <p>
+          <a class="btn btn-lg btn-primary" href="#" role="button">View navbar docs &raquo;</a>
+        </p> -->
+      <!-- </div> -->
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col col-md-3">
+          <div class="">
+            <div class="list-group angular-with-newlines">
+
+              <p>
+                <ul ng-if="vista==1">
+                  <li>
+                    Hacer un formulario para cargar los siguientes datos de una persona:<br>
+                    Nombre, Apellido, Mail, Sexo y DNI.
+                  </li>
+                  <li>
+                    Validar los datos.
+                  </li>
+                  <li>
+                    Cargar los datos de la persona en la factory "Datos".
+                  </li>
+                  <li>
+                    Hacer un controlador "CargaCtrl" donde estara el codigo necesario para el punto 1.
+                  </li>
+                </ul>
+                <ul ng-if="vista==2">
+                  <li>
+                    Mostrar los datos cargados en la factory "Datos" con la directiva "ng-repeat".
+                  </li>
+                  <li>
+                    La grilla tiene que mostrar un boton por cada persona borrar que nos
+                    permita borrar dicha persona.
+                  </li>
+                  <li>
+                    Hacer un controlador "ListadoCtrl" donde estara el codigo necesario para el punto 2.
+                  </li>
+                </ul>
+
+                <div ng-if="vista==3">
+                  <p>
+                    Consumir los datos del archivo "personas.json" con el servicio $http y con las funciones filter, reduce y map
+                    resolver los siguientes puntos.
+                    <br>*Hacer un boton para cada caso.
+                  </p>
+                  <ul >
+                    <li>
+                      Retornar el promedio de edad de los usuarios.
+                    </li>
+                    <li>
+                      Retornar el promedio de edad de los usuarios mujeres.
+                    </li>
+                    <li>
+                      Retornar un objeto que contenga solo el nombre y la edad (name y age) del usuario mas grande.
+                    </li>
+                  </ul>
+                  <p>
+
+                      Hacer un controlador "ListadoCtrl" donde estara el codigo necesario para el punto 3.
+
+                  </p>
+                </div>
+              </p>
+
+              <!-- <a href="#" class="list-group-item active">
+                Cras justo odio
+              </a>
+              <a href="#" ng-click="cambiarVista(1)" class="list-group-item">Dapibus ac facilisis in</a>
+              <a href="#" ng-click="cambiarVista(2)" class="list-group-item">Morbi leo risus</a>
+              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+              <a href="#" class="list-group-item">Vestibulum at eros</a> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-9">
+          <div ng-if="vista==1" ng-include="'views/form.html'" class="vertical-flip msg">
+          </div>
+          <div ng-if="vista==2" ng-include="'views/list.html'" class="vertical-flip msg">
+          </div>
+          <div ng-if="vista==3" ng-include="'views/calculos.html'" class="vertical-flip msg">
+          </div>
+        </div>
+      </div>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="lib/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

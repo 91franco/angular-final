@@ -1,0 +1,47 @@
+// Para importar base
+IMPORTANTE: Estar dentro de la carpeta donde se encuentra la base
+Paso 1: hacer git bash
+Paso 2: importar base con los siguientes comandos:
+	mongoimport --db mibase --collection personas --jsonArray file personas.json
+	mongoimport --db mibase --collection enron --file enron.json
+
+	//
+		mongoimport --db mibase --collection regions --file wine_regions.json
+		mongoimport --db mibase --collection countries --file countries.json
+	//
+
+// Para crear indice
+IMPORTANTE: Estar dentro de la carpeta donde se encuentra la base
+Paso 1: hacer git bash
+Paso 2: ingresar "mongo"
+Paso 3: ingresar "use nombreBase"
+Paso 4: ingresar el siguiente codigo:
+	db.enron.createIndex({sender:"text",text:"text",subject:"text"},{weights:{send
+	er:10,text:1,subject:3}})
+
+	//
+		db.regions.createIndex({geometry:"2dsphere"})
+	
+	//
+
+
+// Para saber cuantos indices existen
+IMPORTANTE: Estar dentro de la carpeta donde se encuentra la base
+Paso 1: hacer git bash
+Paso 2: ingresar "mongo"
+Paso 3: ingresar "use nombreBase"
+Paso 4: ingresar el siguiente codigo:
+	db.enron.getIndexes()
+
+// Para buscar por el indice creado
+IMPORTANTE: Estar dentro de la carpeta donde se encuentra la base
+Paso 1: hacer git bash
+Paso 2: ingresar "mongo"
+Paso 3: ingresar "use nombreBase"
+Paso 4: ingresar el siguiente codigo:
+	 db.enron.find({$text:{$search:"tori"}},{score:{$meta:"textScore"}}).pretty()
+
+	//
+	 	db.countries.findOne({geometry:{$geoIntersects:{$geometry:{type:"Point",coordinates:[-58.36,-34.66]}}}},{"properties.name":1})
+
+		db.regions.find({geometry:{$near:{$geometry:{type:"Point",coordinates:[-3.81,43.47]},$maxDistance:250000}}},{"properties.name":1})
